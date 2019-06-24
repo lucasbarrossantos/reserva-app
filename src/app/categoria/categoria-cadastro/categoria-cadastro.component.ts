@@ -25,10 +25,10 @@ export class CategoriaCadastroComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.title.setTitle('Nova categoria');
     this.route.data.subscribe(({ categoria }) => {
       this.categoria = categoria;
     });
+    this.title.setTitle(this.categoria.id ? `Edição da categoria - ${this.categoria.descricao}` : 'Nova categoria');
   }
 
   get editando() {
@@ -49,12 +49,22 @@ export class CategoriaCadastroComponent implements OnInit {
         this.toasty.success('Categoria salva com sucesso!');
         form.reset();
         this.categoria = new Categoria();
-        this.router.navigate(['/categorias', categoria.body.id]);
+        this.router.navigate(['/categorias']);
       },
       error => this.errorHandle.handle(error)
     );
   }
 
-  atualizarCategoria(form: FormControl) { }
+  atualizarCategoria(form: FormControl) {
+    this.categoriaService.atualizar(this.categoria).subscribe(
+      (categoria) => {
+        this.toasty.success('Categoria salva com sucesso!');
+        form.reset();
+        this.categoria = new Categoria();
+        this.router.navigate(['/categorias']);
+      },
+      error => this.errorHandle.handle(error)
+    );
+  }
 
 }

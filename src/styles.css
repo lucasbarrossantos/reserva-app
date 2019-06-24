@@ -77,6 +77,11 @@ label {
   text-align: center;
 }
 
+.col-id-tb-categoria {
+  width: 50px !important;
+  text-align: center;
+}
+
 textarea {
   resize: none;
 }

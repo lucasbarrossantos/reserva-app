@@ -1,6 +1,8 @@
-import { CategoriaCadastroComponent } from './categoria-cadastro/categoria-cadastro.component';
-import { CategoriaService } from './categoria.service';
 import { Categoria } from '../shared/model/categoria.model';
+import { CategoriaCadastroComponent } from './categoria-cadastro/categoria-cadastro.component';
+import { CategoriaPesquisaComponent } from './categoria-pesquisa/categoria-pesquisa.component';
+import { CategoriaService } from './categoria.service';
+
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
@@ -24,10 +26,10 @@ export class CategoriaResolve implements Resolve<Categoria> {
 }
 
 export const routes: Routes = [
-    /* {
+    {
         path: '',
         component: CategoriaPesquisaComponent,
-    }, */
+    },
     {
       path: 'nova',
       component: CategoriaCadastroComponent,

@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
           { label: 'Matrículas' },
           { label: 'Frequências' },
           { label: 'Alunos', routerLink: '/alunos' },
-          { label: 'Categoria', routerLink: '/categorias/nova'},
+          { label: 'Categoria', routerLink: '/categorias'},
           { label: 'Cursos', routerLink: '/cursos'}
         ]
       },

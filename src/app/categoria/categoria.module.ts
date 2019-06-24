@@ -11,9 +11,10 @@ import { InputTextareaModule } from 'primeng/components/inputtextarea/inputtexta
 import { FormsModule } from '@angular/forms';
 import { CategoriaCadastroComponent } from './categoria-cadastro/categoria-cadastro.component';
 import { SharedModule } from '../shared/shared.module';
+import { CategoriaPesquisaComponent } from './categoria-pesquisa/categoria-pesquisa.component';
 
 @NgModule({
-  declarations: [CategoriaCadastroComponent],
+  declarations: [CategoriaCadastroComponent, CategoriaPesquisaComponent],
   imports: [
     CommonModule,
     CategoriaRoutingModule,
