@@ -4,7 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
 
   // Categorias
-  { path: 'categorias', loadChildren: './categoria/categoria.module#CategoriaModule' }
+  { path: 'categorias', loadChildren: './categoria/categoria.module#CategoriaModule' },
+
+  // Empresas
+  { path: 'empresas', loadChildren: './empresa/empresa.module#EmpresaModule' }
 
 ];
 

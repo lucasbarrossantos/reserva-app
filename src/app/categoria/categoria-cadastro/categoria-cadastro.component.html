@@ -24,14 +24,13 @@
           </app-message>
         </div>
 
-        <div class="ui-g-12 ui-md-12 ui-fluid" 
-             style="margin-left: 0%;margin-right: 83.33333333% !important; resize: none;">
+        <div class="ui-g-12 ui-md-12 ui-fluid"
+          style="margin-left: 0%;margin-right: 83.33333333% !important; resize: none;">
           <label>Observação</label>
-          <textarea pInputTextarea [rows]="5" 
-             [(ngModel)]="categoria.observacao" name="observacao">
+          <textarea pInputTextarea [rows]="5" [(ngModel)]="categoria.observacao" name="observacao">
           </textarea>
         </div>
-        
+
         <div class="ui-g-12">
           <button pButton type="submit" label="Salvar" [disabled]="f.invalid"
             class="ui-button-success btn-margin"></button>

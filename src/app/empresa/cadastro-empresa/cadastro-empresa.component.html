@@ -1,0 +1,117 @@
+<div class="container-custom">
+  <p-card styleClass="ui-card-shadow">
+    <div class="ui-g">
+      <form #f="ngForm"  autocomplete="off" class="ui-g-12 ui-md-12">
+        <div class="ui-g-12">
+          <h2> {{ editando ? ' Edição da empresa ' : 'Nova empresa' }}</h2>
+        </div>
+
+        <div class="ui-g-12">
+          <h3>campos obrigatórios
+            <span style="color: brown; margin-left: 3.5px;">*</span>
+          </h3>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Nome fantasia</label><span style="color: brown; margin-left: 3.5px;">*</span>
+          <input pInputText minlength="5" required ngModel name="nomeFantasia" #nomeFantasia="ngModel"
+            [(ngModel)]="empresa.nomeFantasia" />
+
+          <app-message [control]="nomeFantasia" error="required" text="Informe a descrição"></app-message>
+
+          <app-message [control]="nomeFantasia" error="minlength"
+            text="Mínimo de {{ nomeFantasia?.errors?.minlength?.requiredLength }} caracteres.">
+          </app-message>
+        </div>
+
+        <div class="ui-g-12 ui-md-6 ui-fluid">
+          <label>Razão social</label><span style="color: brown; margin-left: 3.5px;">*</span>
+          <input pInputText name="razaoSocial" ngModel [(ngModel)]="empresa.razaoSocial">
+        </div>
+
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>CNPJ</label><span style="color: brown; margin-left: 3.5px;">*</span>
+          <p-inputMask mask="99.999.999/9999-99" minlength="5" [(ngModel)]="empresa.cnpj" name="cnpj" required>
+          </p-inputMask>
+        </div>
+
+        <div class="ui-g-12 ui-md-3 ui-fluid">
+          <label>Inscrição estadual</label>
+          <input pInputText name="inscricaoEstadual" ngModel [(ngModel)]="empresa.inscricaoEstadual">
+        </div>
+
+        <div class="ui-g-12 ui-md-12 ui-fluid">
+          <p-accordion [multiple]="true">
+            <p-accordionTab header="Dados do endereço">
+              <div class="ui-g-12 ui-md-2 ui-fluid" style="margin-left: 0%;margin-right: 83.33333333% !important;">
+                <label>CEP</label><span style="color: brown; margin-left: 3.5px;" [hidden]="!empresa.endereco">*</span>
+                <p-inputMask (onBlur)="completarEndereco($event)" mask="99999-999" [(ngModel)]="empresa.endereco.cep" name="cep">
+                </p-inputMask>
+              </div>
+
+              <div class="ui-g-12 ui-md-4 ui-fluid">
+                <label>Logradouro</label>
+                <input pInputText [(ngModel)]="empresa.endereco.logradouro" name="logradouro" />
+              </div>
+
+              <div class="ui-g-12 ui-md-4 ui-fluid">
+                <label>Bairro</label>
+                <input pInputText [(ngModel)]="empresa.endereco.bairro" name="bairro" />
+              </div>
+
+              <div class="ui-g-12 ui-md-2 ui-fluid">
+                <label>Cidade</label>
+                <input pInputText [(ngModel)]="empresa.endereco.cidade" name="cidade" />
+              </div>
+
+              <div class="ui-g-12 ui-md-2 ui-fluid">
+                <label>Estado</label>
+                <input pInputText [(ngModel)]="empresa.endereco.estado" name="estado" />
+              </div>
+
+              <div class="ui-g-12 ui-md-2 ui-fluid">
+                <label>Complemento</label>
+                <input pInputText [(ngModel)]="empresa.endereco.complemento" name="complemento" />
+              </div>
+
+              <div class="ui-g-12 ui-md-2 ui-fluid">
+                <label>Número</label>
+                <input pInputText [(ngModel)]="empresa.endereco.numero" name="numero" />
+              </div>
+
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+
+        <div class="ui-g-12 ui-md-12 ui-fluid">
+          <p-accordion [multiple]="true">
+            <p-accordionTab header="Dados do contato">
+              <div class="ui-g-12 ui-md-4 ui-fluid">
+                <label>E-mail</label>
+                <input pInputText [(ngModel)]="empresa.email" name="email" />
+              </div>
+
+              <div class="ui-g-12 ui-md-4 ui-fluid">
+                <label>Celular</label>
+                <p-inputMask mask="(99)9 9999-9999" [(ngModel)]="empresa.celular" name="celular">
+                </p-inputMask>
+              </div>
+
+              <div class="ui-g-12 ui-md-4 ui-fluid">
+                <label>Site</label>
+                <input pInputText [(ngModel)]="empresa.site" name="site" />
+              </div>
+
+            </p-accordionTab>
+          </p-accordion>
+        </div>
+
+        <div class="ui-g-12" style="margin-top: 10px">
+          <button pButton type="submit" label="Salvar" [disabled]="f.invalid"
+            class="ui-button-success btn-margin"></button>
+          <button pButton type="submit" label="Voltar" routerLink="/empresas" class="ui-button-info"></button>
+        </div>
+      </form>
+    </div>
+  </p-card>
+</div>

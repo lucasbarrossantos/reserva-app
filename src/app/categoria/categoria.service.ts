@@ -6,9 +6,9 @@ import {
   HttpClient,
   HttpResponse
 } from '@angular/common/http';
-import { Categoria } from '../shared/model/categoria.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
+import { Categoria } from '../shared/model/categoria.model';
 import { CategoriaFilter } from '../shared/model/filtros/categoria.filter';
 
 @Injectable({
