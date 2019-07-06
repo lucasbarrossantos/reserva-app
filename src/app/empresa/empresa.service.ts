@@ -18,19 +18,38 @@ export class EmpresaService {
 
   constructor(private http: HttpClient) {}
 
+  salvar(empresa: Empresa): Observable<any> {
+    return this.http.post<Empresa>(`${this.resourceUrl}/empresas`, empresa, {
+      params: null,
+      observe: 'response'
+    });
+  }
+
+  atualizar(empresa: Empresa): Observable<any> {
+    return this.http.put<Empresa>(
+      `${this.resourceUrl}/empresas/${empresa.id}`,
+      empresa,
+      {
+        observe: 'response'
+      }
+    );
+  }
+
   // Pesquisas
 
   findById(id: number): Observable<any> {
     return this.http
       .get<Empresa>(`${this.resourceUrl}/empresas/${id}`, {
         observe: 'response'
-      }).pipe(map((res: any) => res));
+      })
+      .pipe(map((res: any) => res));
   }
 
   findEnderecoByCep(cep: string): Observable<any> {
     return this.http
       .get<any>(`https://viacep.com.br/ws/${cep}/json/`, {
-        observe: 'body'
-      }).pipe(map((res: any) => res));
+        observe: 'response'
+      })
+      .pipe(map((res: any) => res));
   }
 }

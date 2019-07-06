@@ -33,14 +33,14 @@ export const routes: Routes = [
       path: 'nova',
       component: CadastroEmpresaComponent,
       resolve: {
-            categoria: EmpresaResolve
+            empresa: EmpresaResolve
         }
     },
     {
       path: ':codigo',
       component: CadastroEmpresaComponent,
       resolve: {
-            categoria: EmpresaResolve
+            empresa: EmpresaResolve
         }
     },
  ];
