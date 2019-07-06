@@ -49,16 +49,16 @@ export class CadastroEmpresaComponent implements OnInit, OnDestroy {
 
   atualizar(form: FormControl) {
     this.empresaService.atualizar(this.empresa).subscribe(( empresa ) => {
-      this.toasty.success('Empresa atualizada com sucesso!');
+      this.responseSuccess('Empresa atualizada com sucesso!');
+      this.resetForm(form);
       this.router.navigate(['/empresas', empresa.body.id]);
     });
   }
 
   adicionar(form: FormControl) {
     this.empresaService.salvar(this.empresa).subscribe(empresaResponse => {
-      this.toasty.success('Empresa salva com sucesso!');
-      form.reset();
-      this.empresa = new Empresa();
+      this.responseSuccess('Empresa salva com sucesso!');
+      this.resetForm(form);
       this.router.navigate(['/empresas', empresaResponse.id]);
     });
   }
@@ -83,5 +83,14 @@ export class CadastroEmpresaComponent implements OnInit, OnDestroy {
     this.empresa.endereco.logradouro = response.body.logradouro;
     this.empresa.endereco.estado = response.body.uf;
     this.empresa.endereco.complemento = response.body.complemento;
+  }
+
+  private resetForm(form: FormControl) {
+    form.reset();
+    this.empresa = new Empresa();
+  }
+
+  private responseSuccess(msg: string) {
+    this.toasty.success(msg);
   }
 }
