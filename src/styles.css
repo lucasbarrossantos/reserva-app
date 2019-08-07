@@ -85,3 +85,34 @@ label {
 textarea {
   resize: none;
 }
+
+/* Custom Empresa */
+.col-nome-tb-empresa {
+  width: 60px !important;
+  text-align: center;
+}
+
+.col-id-tb-empresa {
+  width: 5px !important;
+  text-align: center;
+}
+
+.col-acoes-empresas {
+  width: 10px !important;
+  text-align: center;
+}
+
+.col-email-tb-empresa {
+  width: 40px !important;
+  text-align: center;
+}
+
+.col-cnpj-tb-empresa {
+  width: 30px !important;
+  text-align: center;
+}
+
+.col-celular-tb-empresa {
+  width: 30px !important;
+  text-align: center; 
+}

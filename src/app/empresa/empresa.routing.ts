@@ -4,9 +4,10 @@ import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpResponse } from '@angular/common/http';
 
-import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.component';
 import { Empresa } from '../shared/model/empresa.model';
+import { CadastroEmpresaComponent } from './cadastro-empresa/cadastro-empresa.component';
 import { EmpresaService } from './empresa.service';
+import { PesquisaEmpresaComponent } from './pesquisa-empresa/pesquisa-empresa.component';
 
 @Injectable({ providedIn: 'root' })
 export class EmpresaResolve implements Resolve<Empresa> {
@@ -25,10 +26,10 @@ export class EmpresaResolve implements Resolve<Empresa> {
 }
 
 export const routes: Routes = [
-    /* {
+    {
         path: '',
-        component: CategoriaPesquisaComponent,
-    }, */
+        component: PesquisaEmpresaComponent,
+    },
     {
       path: 'nova',
       component: CadastroEmpresaComponent,

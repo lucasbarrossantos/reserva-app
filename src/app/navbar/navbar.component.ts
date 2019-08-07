@@ -17,13 +17,8 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Início',
         items: [
-          { label: 'Interessados' },
-          { label: 'Interessados(Eventos)' },
-          { label: 'Matrículas' },
-          { label: 'Frequências' },
-          { label: 'Alunos', routerLink: '/alunos' },
           { label: 'Categoria', routerLink: '/categorias'},
-          { label: 'Cursos', routerLink: '/cursos'}
+          { label: 'Empresas', routerLink: '/empresas'}
         ]
       },
       {
@@ -34,20 +29,11 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Financeiro',
-        items: [
-          { label: 'Títulos'},
-          { label: 'Estoque'},
-        ]
+        items: [ ]
       },
       {
         label: 'Relatórios',
-        items: [
-          { label: 'Matrículas' },
-          { label: 'Financeiro' },
-          { label: 'Frequências' },
-          { label: 'Interessados' },
-          { label: 'Professores' },
-        ]
+        items: [ ]
       }/* ,
       {
         label: 'Administração',
@@ -63,7 +49,7 @@ export class NavbarComponent implements OnInit {
           { label: 'Abrir chamado' },
           { label: 'Configurações' },
           { label: 'Sobre' },
-          { label: 'Suporte', url: 'http://google.com' }
+          { label: 'Suporte', url: 'http://google.com', target: '_blanck' }
         ]
       },
       /* { label: 'Login',  routerLink: '/login' } */

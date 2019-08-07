@@ -9,6 +9,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
+import { EmpresaFilter } from '../shared/model/filtros/empresa.filter';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +38,18 @@ export class EmpresaService {
 
   // Pesquisas
 
+  pesquisar(filtro: EmpresaFilter): Observable<any> {
+    let param = new HttpParams();
+    param = this.filtros(filtro, param);
+
+    return this.http
+      .get<Empresa[]>(`${this.resourceUrl}/empresas?sort=nomeFantasia,asc`, {
+        params: param,
+        observe: 'response'
+      })
+      .pipe(map((res: any) => this.convertDateArrayFromServer(res)));
+  }
+
   findById(id: number): Observable<any> {
     return this.http
       .get<Empresa>(`${this.resourceUrl}/empresas/${id}`, {
@@ -51,5 +64,38 @@ export class EmpresaService {
         observe: 'response'
       })
       .pipe(map((res: any) => res));
+  }
+
+  protected convertDateArrayFromServer(res: any): any {
+    let result = {};
+    if (res.body) {
+      result = {
+        empresas: res.body.content,
+        total: res.body.totalElements
+      };
+    }
+    return result;
+  }
+
+  /*
+   * Filtros
+   * Params: filtro: any, param: HttpParams
+   */
+
+  private filtros(filtro: any, param: HttpParams) {
+    // Parametros de paginacao
+    param = param.set('page', filtro.pagina);
+    param = param.set('size', filtro.itensPorPagina);
+
+    // Parametros de filtragens
+    if (filtro.nomeFantasia) {
+      param = param.set('nomeFantasia', filtro.nomeFantasia);
+    }
+
+    if (filtro.cnpj) {
+      param = param.set('cnpj', filtro.cnpj);
+    }
+
+    return param;
   }
 }

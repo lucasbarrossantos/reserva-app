@@ -1,0 +1,76 @@
+<div class="container-custom">
+  <p-card styleClass="ui-card-shadow">
+    <div class="ui-g">       
+        <form autocomplete="off" (ngSubmit)="pesquisar()" class="ui-g-12 ui-md-12">
+          <div class="ui-g-12 ui-md-12 ui-fluid">
+              <h1>Empresas</h1>
+          </div>
+
+          <div class="ui-g-12 ui-md-6 ui-fluid">
+            <label> Nome fantasia </label>
+            <input type="text" pInputText name="nomeFantasia" [(ngModel)]="filtro.nomeFantasia" />
+          </div>
+
+          <div class="ui-g-12 ui-md-6 ui-fluid">
+            <label> CNPJ </label>
+            <p-inputMask mask="99.999.999/9999-99"
+              [(ngModel)]="filtro.cnpj" name="cnpj">
+            </p-inputMask>
+          </div>
+
+          <div class="ui-g-12">
+              <button pButton type="submit" label="Pesquisar" class="ui-button-info"></button>
+              <a pButton label="Adicionar" routerLink="nova" class="ui-button-success"
+                  style="float: right"> </a>
+          </div>
+       </form>
+
+    <div class="ui-g">
+      <div class="ui-g-12">
+        <p-table [value]="empresas" [responsive]="true"
+                [rows]="filtro.itensPorPagina" [paginator]="true"
+                [lazy]="true" [totalRecords]="totalRegistros" 
+                (onLazyLoad)="onMudarPagina($event)" #tabela>
+          <ng-template pTemplate="header">
+            <tr>
+              <th class="col-id-tb-empresa">#</th>
+              <th class="col-nome-tb-empresa">Nome</th>
+              <th class="col-cnpj-tb-empresa">CNPJ</th>
+              <th class="col-email-tb-empresa">E-mail</th>
+              <th class="col-celular-tb-empresa">Celular</th>
+              <th class="col-acoes-empresas">Ações</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-empresa>
+            <tr>
+              <td class="col-id-tb-empresa">{{ empresa.id }}</td>
+              <td class="col-nome-tb-empresa">{{ empresa.nomeFantasia }}</td>
+              <td class="col-cnpj-tb-empresa"> {{ empresa.cnpj }} </td>
+              <td class="col-email-tb-empresa">{{ empresa.email }}</td>
+              <td class="col-celular-tb-empresa">{{ empresa.celular }}</td>
+              
+              <td class="col-acoes-empresas">
+                <a pButton icon="pi pi-pencil" pTooltip="Editar"
+                  [routerLink]="[ '/empresas', empresa.id ]"
+                  tooltipPosition="top" style="margin-right: 5px">
+                </a>
+                <button pButton icon="pi pi-trash" class="ui-button-danger"
+                        (click)="confirmExclusao(empresa.id, empresa.nomeFantasia)"
+                        pTooltip="Excluir" tooltipPosition="top">
+                </button>
+              </td>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage" let-columns>
+              <tr>
+                  <td [attr.colspan]="6">
+                      Nenhum registro encontrado.
+                  </td>
+              </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+  </p-card>
+</div>
